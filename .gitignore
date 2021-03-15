@@ -23,6 +23,9 @@ config/autom4te.cache/
 *.log
 *.*~
 
+#Ignore vscode setting
+.vscode/
+
 # Patch files
 *.patch
 

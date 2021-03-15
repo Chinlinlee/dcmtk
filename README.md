@@ -36,3 +36,6 @@ In addition to the API documentation, which is also available [online](https://s
 If you find bugs or other problems with this software, we would appreciate hearing about them.  Please send electronic mail to: bugs/at/dcmtk/dot/org
 
 Please try to describe the problem in detail and if possible give a suggested fix.  For general questions on how to compile, install or use the toolkit we recommend the [public discussion forum](https://forum.dcmtk.org/).
+
+# myDCMTK
+Hard code dcm2json skip pixel data.

@@ -23,10 +23,7 @@ project(DCMTK)
 #-----------------------------------------------------------------------------
 
 # Modules to be built
-set(DCMTK_MODULES ofstd oflog dcmdata dcmimgle
-  dcmimage dcmjpeg dcmjpls dcmtls dcmnet dcmsr
-  dcmsign dcmwlm dcmqrdb dcmpstat dcmrt dcmiod dcmfg
-  dcmseg dcmtract dcmpmap dcmect
+set(DCMTK_MODULES ofstd oflog dcmdata
   CACHE STRING "List of modules that should be built.")
 
 # Include directories
