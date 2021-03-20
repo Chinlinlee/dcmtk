@@ -563,9 +563,10 @@ OFCondition DcmItem::writeJson(STD_NAMESPACE ostream &out,
 // ********************************
 
 OFCondition DcmItem::writeJsonExt(STD_NAMESPACE ostream &out,
-                               DcmJsonFormat &format,
-                                OFBool printBraces,
-                                OFBool printNewline)
+                                  DcmJsonFormat &format,
+                                  OFBool printBraces,
+                                  OFBool printNewline ,
+                                  OFBool isSkipBinary)
 {
     size_t num_printed = 0;
     OFBool first = OFTrue;
@@ -581,10 +582,17 @@ OFCondition DcmItem::writeJsonExt(STD_NAMESPACE ostream &out,
             // get next item
             elem = elementList->get();
             OFString tag = elem->getTag().toString();
-            DcmVR elemVR = DcmVR(elem->getVR());
-            OFString VRName= elemVR.getVRName();
-            if (VRName == "OB") continue;
+            DcmVR elemVR(elem->getVR());
+            OFString VRName= elemVR.getValidVRName();
+            //skip OB or OW vr
+            if (isSkipBinary) 
+            {
+                if (VRName == "OB" ||
+                    VRName == "OW") continue;
+            }
+            //hard code always skip pixel data
             if (tag == "(7fe0,0010)") continue;
+
             // check if this is a group length, and if so, ignore
             if (elem->getTag().getElement() != 0)
             {
