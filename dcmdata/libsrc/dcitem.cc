@@ -581,7 +581,6 @@ OFCondition DcmItem::writeJsonExt(STD_NAMESPACE ostream &out,
             // get next item
             elem = elementList->get();
             OFString tag = elem->getTag().toString();
-            OFString elemVR = elem->getVR().toString();
             if (tag == "(7fe0,0010)") continue;
             // check if this is a group length, and if so, ignore
             if (elem->getTag().getElement() != 0)
