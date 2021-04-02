@@ -232,8 +232,7 @@ OFCondition DcmFileFormat::writeXML(STD_NAMESPACE ostream &out,
 
 
 OFCondition DcmFileFormat::writeJson(STD_NAMESPACE ostream &out,
-                                     DcmJsonFormat &format ,
-                                     OFBool isSkipBinary)
+                                     DcmJsonFormat &format)
 {
     OFBool meta = format.printMetaheaderInformation;
     DcmDataset *dset = getDataset();
@@ -245,12 +244,12 @@ OFCondition DcmFileFormat::writeJson(STD_NAMESPACE ostream &out,
         out << format.indent() << "{" << format.newline();
         if (metinf)
         {
-          status = metinf->writeJsonExt(out, format, OFFalse, OFFalse , isSkipBinary);
+          status = metinf->writeJsonExt(out, format, OFFalse, OFFalse);
         }
         if (dset && status.good())
         {
             if (metinf && (metinf->card() > 0) && (dset->card() > 0)) out << "," << format.newline();
-            status = dset->writeJsonExt(out, format, OFFalse, OFFalse , isSkipBinary);
+            status = dset->writeJsonExt(out, format, OFFalse, OFFalse);
         }
         out << format.newline() << format.indent() << "}" << format.newline();
     }
@@ -259,7 +258,7 @@ OFCondition DcmFileFormat::writeJson(STD_NAMESPACE ostream &out,
         // standard case: only print dataset
         if (dset)
         {
-            status = dset->writeJsonExt(out, format, OFTrue, OFTrue  ,isSkipBinary);
+            status = dset->writeJsonExt(out, format, OFTrue, OFTrue);
         }
         else
         {

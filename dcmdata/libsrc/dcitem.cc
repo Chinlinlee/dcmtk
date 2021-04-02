@@ -565,8 +565,7 @@ OFCondition DcmItem::writeJson(STD_NAMESPACE ostream &out,
 OFCondition DcmItem::writeJsonExt(STD_NAMESPACE ostream &out,
                                   DcmJsonFormat &format,
                                   OFBool printBraces,
-                                  OFBool printNewline ,
-                                  OFBool isSkipBinary)
+                                  OFBool printNewline)
 {
     size_t num_printed = 0;
     OFBool first = OFTrue;
