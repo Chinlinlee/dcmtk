@@ -563,9 +563,10 @@ OFCondition DcmItem::writeJson(STD_NAMESPACE ostream &out,
 // ********************************
 
 OFCondition DcmItem::writeJsonExt(STD_NAMESPACE ostream &out,
-                               DcmJsonFormat &format,
-                                OFBool printBraces,
-                                OFBool printNewline)
+                                  DcmJsonFormat &format,
+                                  OFBool printBraces,
+                                  OFBool printNewline ,
+                                  OFBool isSkipBinary)
 {
     size_t num_printed = 0;
     OFBool first = OFTrue;
@@ -582,6 +583,7 @@ OFCondition DcmItem::writeJsonExt(STD_NAMESPACE ostream &out,
             elem = elementList->get();
             OFString tag = elem->getTag().toString();
             if (tag == "(7fe0,0010)") continue;
+
             // check if this is a group length, and if so, ignore
             if (elem->getTag().getElement() != 0)
             {
